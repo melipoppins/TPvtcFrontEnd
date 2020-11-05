@@ -1,0 +1,21 @@
+<h2>Informations véhicule</h2>
+
+<hr/>
+<div *ngIf="vehicule">
+  <div>
+    <label><b>Marque : </b></label> {{vehicule.marque}}
+  </div>
+  <div>
+    <label><b>Modèle : </b></label> {{vehicule.modele}}
+  </div>
+  <div>
+    <label><b>Couleur : </b></label> {{vehicule.couleur}}
+  </div>
+  <div>
+    <label><b>Immatriculation : </b></label> {{vehicule.immatriculation}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Retour vers la liste des véhicules</button><br>

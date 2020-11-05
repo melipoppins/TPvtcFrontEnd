@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Conducteurs</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let conducteur of conducteurs | async">
+        <td>{{conducteur.idConducteur}}</td>
+        <td>{{conducteur.prenom}}</td>
+        <td>{{conducteur.nom}}</td>
+        <td>
+          <button (click)="conducteurDetails(conducteur.idConducteur)" class="btn btn-info">Détails</button>
+          <button (click)="updateConducteur(conducteur.idConducteur, conducteur)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>
+          <button (click)="deleteConducteur(conducteur.idConducteur)" class="btn btn-danger" style="margin-left: 10px">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  <hr>
+    <app-create-conducteur></app-create-conducteur>
+
+</div>
+</div>

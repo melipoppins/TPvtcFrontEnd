@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Véhicules</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Marque</th>
+        <th>Modèle</th>
+        <th>Couleur</th>
+        <th>Immatriculation</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let vehicule of vehicules | async">
+        <td>{{vehicule.idVehicule}}</td>
+        <td>{{vehicule.marque}}</td>
+        <td>{{vehicule.modele}}</td>
+        <td>{{vehicule.couleur}}</td>
+        <td>{{vehicule.immatriculation}}</td>
+        <td>
+          <button (click)="vehiculeDetails(vehicule.idVehicule)" class="btn btn-info">Détails</button>
+          <button (click)="updateVehicule(vehicule.idVehicule, vehicule)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>
+          <button (click)="deleteVehicule(vehicule.idVehicule)" class="btn btn-danger" style="margin-left: 10px">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h2>Informations conducteur</h2>
+
+<hr/>
+<div *ngIf="conducteur">
+  <div>
+    <label><b>Prénom : </b></label> {{conducteur.prenom}}
+  </div>
+  <div>
+    <label><b>Nom : </b></label> {{conducteur.nom}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Retour vers la liste des conducteurs</button><br>
