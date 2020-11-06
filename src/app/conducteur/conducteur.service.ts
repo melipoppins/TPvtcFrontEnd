@@ -31,4 +31,8 @@ export class ConducteurService {
     return this.http.get(`${this.baseUrl}`);
   }
 
+  getMinConducteursList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/min`);
+  }
+
 }

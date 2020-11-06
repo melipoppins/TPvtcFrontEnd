@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Conducteur} from '../conducteur';
 import {ConducteurService} from '../conducteur.service';
 import {Router} from '@angular/router';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./create-conducteur.component.css']
 })
 export class CreateConducteurComponent implements OnInit {
-  @Input()
+  @Output() majListConducteurs = new EventEmitter();
   conducteur: Conducteur = new Conducteur();
 
   submitted = false;
@@ -30,12 +30,14 @@ export class CreateConducteurComponent implements OnInit {
       .createConducteur(this.conducteur).subscribe(data => {
         console.log(data);
         this.conducteur = new Conducteur();
-        this.gotolist();
+        this.majListConducteurs.emit();
+        // this.gotolist();
       },
       error => console.log(error));
   }
 
   onSubmit(): void {
+    alert('Conducteur créé');
     this.submitted = true;
     this.save();
   }

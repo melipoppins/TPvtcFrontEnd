@@ -31,4 +31,8 @@ export class VehiculeService {
     return this.http.get(`${this.baseUrl}`);
   }
 
+  getMinVehiculesList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/min`);
+  }
+
 }

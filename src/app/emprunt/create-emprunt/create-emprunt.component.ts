@@ -14,12 +14,16 @@ import {VehiculeService} from '../../vehicule/vehicule.service';
   styleUrls: ['./create-emprunt.component.css']
 })
 export class CreateEmpruntComponent implements OnInit {
-  emprunt: Emprunt = new Emprunt();
+  emprunts: Emprunt = new Emprunt();
   vehicules: Observable<Vehicule[]>;
+  conducteurs: Observable<Conducteur[]>;
+  vehiculeEmprunte;
+  conducteurEmprunteur;
+  // angular data binding
 
   submitted = false;
 
-  constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService, private router: Router) {
+  constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService, private conducteurService: ConducteurService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,25 +31,27 @@ export class CreateEmpruntComponent implements OnInit {
   }
 
   reloadData(): void {
-    this.vehicules = this.vehiculeService.getVehiculesList();
+    this.vehicules = this.vehiculeService.getMinVehiculesList();
+    this.conducteurs = this.conducteurService.getMinConducteursList();
   }
 
   newEmprunt(): void {
     this.submitted = false;
-    this.emprunt = new Emprunt();
+    this.emprunts = new Emprunt();
   }
 
   save(): void {
     this.empruntService
-      .createEmprunt(this.emprunt).subscribe(data => {
+      .createEmprunt(this.emprunts).subscribe(data => {
         console.log(data);
-        this.emprunt = new Emprunt();
+        this.emprunts = new Emprunt();
         this.gotolist();
       },
       error => console.log(error));
   }
 
   onSubmit(): void {
+    alert("Association créée");
     this.submitted = true;
     this.save();
   }

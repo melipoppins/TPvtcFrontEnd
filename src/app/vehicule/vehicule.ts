@@ -6,5 +6,5 @@ export class Vehicule {
   modele: string;
   couleur: string;
   immatriculation: string;
-  emprunts: Array<Emprunt>;
+  emprunts: Emprunt[];
 }

@@ -3,8 +3,6 @@ import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {VehiculeService} from '../vehicule.service';
 import {Vehicule} from '../vehicule';
-import {Conducteur} from '../../conducteur/conducteur';
-import {ConducteurService} from '../../conducteur/conducteur.service';
 
 @Component({
   selector: 'app-vehicule-list',
