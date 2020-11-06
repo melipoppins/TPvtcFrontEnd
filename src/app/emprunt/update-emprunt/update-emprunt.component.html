@@ -1,0 +1,16 @@
+<h3>Modifier emprunt</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="conducteur">Conducteur</label>
+      <input [(ngModel)]="emprunt.conducteurs" class="form-control" id="conducteur" name="conducteur" required type="text">
+    </div>
+
+    <div class="form-group">
+      <label for="vehicule">Véhicule</label>
+      <input [(ngModel)]="emprunt.vehicules" class="form-control" id="vehicule" name="vehicule" required type="text">
+    </div>
+
+    <button class="btn btn-success" type="submit">Envoyer</button>
+  </form>
+</div>

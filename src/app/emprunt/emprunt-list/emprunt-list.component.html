@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Emprunts</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Conducteur</th>
+        <th>Véhicule</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let emprunt of emprunts | async">
+        <td>{{emprunt.idEmprunt}}</td>
+        <td>{{emprunt.conducteurs}}</td>
+        <td>{{emprunt.vehicules}}</td>
+        <td>
+          <button (click)="empruntDetails(emprunt.idEmprunt)" class="btn btn-info">Détails</button>
+          <button (click)="updateEmprunt(emprunt.idEmprunt, emprunt)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>
+          <button (click)="deleteEmprunt(emprunt.idEmprunt)" class="btn btn-danger" style="margin-left: 10px">Supprimer</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <hr>
+    <app-create-emprunt></app-create-emprunt>
+
+  </div>
+</div>
