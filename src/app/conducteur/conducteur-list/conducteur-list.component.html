@@ -19,15 +19,33 @@
         <td>{{conducteur.nom}}</td>
         <td>
           <button (click)="conducteurDetails(conducteur.idConducteur)" class="btn btn-info">Détails</button>
-          <button (click)="updateConducteur(conducteur.idConducteur, conducteur)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>
-          <button (click)="deleteConducteur(conducteur.idConducteur)" class="btn btn-danger" style="margin-left: 10px">Supprimer</button>
+          <button (click)="updateConducteur(conducteur.idConducteur, conducteur)" class="btn btn-warning"
+                  style="margin-left: 10px">Modifier
+          </button>
+          <button (click)="deleteConducteur(conducteur.idConducteur)" class="btn btn-danger" style="margin-left: 10px">
+            Supprimer
+          </button>
         </td>
       </tr>
       </tbody>
     </table>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <app-create-conducteur (majListConducteurs)="reloadData()"></app-create-conducteur>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <app-update-conducteur (majListConducteurs)="reloadData()"></app-update-conducteur>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <hr>
-    <app-create-conducteur (majListConducteurs)="reloadData()"></app-create-conducteur>
-
-</div>
+  </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {Conducteur} from '../conducteur';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ConducteurService} from '../conducteur.service';
@@ -10,6 +10,7 @@ import {ConducteurService} from '../conducteur.service';
 })
 export class UpdateConducteurComponent implements OnInit {
   id: number;
+  @Output() majListConducteurs = new EventEmitter();
   conducteur: Conducteur;
   submitted = false;
 
@@ -33,6 +34,7 @@ export class UpdateConducteurComponent implements OnInit {
       .subscribe(data => {
         console.log(data);
         this.conducteur = new Conducteur();
+        this.majListConducteurs.emit();
         this.gotoList();
       }, error => console.log(error));
   }

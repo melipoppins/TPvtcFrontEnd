@@ -31,7 +31,6 @@ export class CreateConducteurComponent implements OnInit {
         console.log(data);
         this.conducteur = new Conducteur();
         this.majListConducteurs.emit();
-        // this.gotolist();
       },
       error => console.log(error));
   }
@@ -42,7 +41,4 @@ export class CreateConducteurComponent implements OnInit {
     this.save();
   }
 
-  gotolist(): void {
-    this.router.navigate(['/conducteurs']);
-  }
 }
