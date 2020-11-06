@@ -30,4 +30,5 @@ export class VehiculeService {
   getVehiculesList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
+
 }

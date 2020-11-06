@@ -8,17 +8,25 @@ import {VehiculeListComponent} from './vehicule/vehicule-list/vehicule-list.comp
 import {CreateVehiculeComponent} from './vehicule/create-vehicule/create-vehicule.component';
 import {UpdateVehiculeComponent} from './vehicule/update-vehicule/update-vehicule.component';
 import {VehiculeDetailsComponent} from './vehicule/vehicule-details/vehicule-details.component';
+import {EmpruntDetailsComponent} from './emprunt/emprunt-details/emprunt-details.component';
+import {UpdateEmpruntComponent} from './emprunt/update-emprunt/update-emprunt.component';
+import {CreateEmpruntComponent} from './emprunt/create-emprunt/create-emprunt.component';
+import {EmpruntListComponent} from './emprunt/emprunt-list/emprunt-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'conducteur', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'conducteurs', component: ConducteurListComponent},
-  {path: 'addconducteur', component: CreateConducteurComponent},
-  {path: 'updateconducteur/:id', component: UpdateConducteurComponent},
+  {path: 'ajouterconducteur', component: CreateConducteurComponent},
+  {path: 'modifierconducteur/:id', component: UpdateConducteurComponent},
   {path: 'detailsconducteur/:id', component: ConducteurDetailsComponent},
   {path: 'vehicules', component: VehiculeListComponent},
-  {path: 'addvehicule', component: CreateVehiculeComponent},
-  {path: 'updatevehicule/:id', component: UpdateVehiculeComponent},
+  {path: 'ajoutervehicule', component: CreateVehiculeComponent},
+  {path: 'modifiervehicule/:id', component: UpdateVehiculeComponent},
   {path: 'detailsvehicule/:id', component: VehiculeDetailsComponent},
+  {path: 'emprunt', component: EmpruntListComponent},
+  {path: 'ajoutervemprunt', component: CreateEmpruntComponent},
+  {path: 'modifieremprunt/:id', component: UpdateEmpruntComponent},
+  {path: 'detailsemprunt/:id', component: EmpruntDetailsComponent},
 ];
 
 @NgModule({

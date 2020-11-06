@@ -13,6 +13,10 @@ import { VehiculeDetailsComponent } from './vehicule/vehicule-details/vehicule-d
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app.routing.module';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateEmpruntComponent } from './emprunt/create-emprunt/create-emprunt.component';
+import { UpdateEmpruntComponent } from './emprunt/update-emprunt/update-emprunt.component';
+import { EmpruntListComponent } from './emprunt/emprunt-list/emprunt-list.component';
+import { EmpruntDetailsComponent } from './emprunt/emprunt-details/emprunt-details.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import {HttpClientModule} from '@angular/common/http';
     CreateVehiculeComponent,
     UpdateVehiculeComponent,
     VehiculeListComponent,
-    VehiculeDetailsComponent
+    VehiculeDetailsComponent,
+    CreateEmpruntComponent,
+    UpdateEmpruntComponent,
+    EmpruntListComponent,
+    EmpruntDetailsComponent,
   ],
   imports: [
     BrowserModule,

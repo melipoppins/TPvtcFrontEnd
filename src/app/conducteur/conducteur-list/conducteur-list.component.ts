@@ -38,7 +38,7 @@ export class ConducteurListComponent implements OnInit {
   }
 
   updateConducteur(id: number, value: any): void {
-    this.router.navigate(['updateconducteur', id]);
+    this.router.navigate(['modifierconducteur', id]);
 
   }
 }

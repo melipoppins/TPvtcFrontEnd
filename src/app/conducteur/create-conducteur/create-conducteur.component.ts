@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Conducteur} from '../conducteur';
 import {ConducteurService} from '../conducteur.service';
 import {Router} from '@angular/router';
@@ -9,7 +9,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./create-conducteur.component.css']
 })
 export class CreateConducteurComponent implements OnInit {
-  @Input() conducteur: Conducteur = new Conducteur();
+  @Input()
+  conducteur: Conducteur = new Conducteur();
+
   submitted = false;
 
   constructor(private conducteurService: ConducteurService, private router: Router) {
