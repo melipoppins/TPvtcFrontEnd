@@ -15,8 +15,8 @@
       <tbody>
       <tr *ngFor="let emprunt of emprunts | async">
         <td>{{emprunt.idEmprunt}}</td>
-        <td>{{emprunt.conducteurs}}</td>
-        <td>{{emprunt.vehicules}}</td>
+        <td>{{emprunt.conducteur.prenom}}</td>
+        <td>{{emprunt.vehicule.marque}}</td>
         <td>
           <button (click)="empruntDetails(emprunt.idEmprunt)" class="btn btn-info">Détails</button>
           <button (click)="updateEmprunt(emprunt.idEmprunt, emprunt)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>

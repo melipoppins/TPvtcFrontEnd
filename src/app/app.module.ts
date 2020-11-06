@@ -17,6 +17,8 @@ import { CreateEmpruntComponent } from './emprunt/create-emprunt/create-emprunt.
 import { UpdateEmpruntComponent } from './emprunt/update-emprunt/update-emprunt.component';
 import { EmpruntListComponent } from './emprunt/emprunt-list/emprunt-list.component';
 import { EmpruntDetailsComponent } from './emprunt/emprunt-details/emprunt-details.component';
+import { MaterialModule } from './material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { EmpruntDetailsComponent } from './emprunt/emprunt-details/emprunt-detai
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

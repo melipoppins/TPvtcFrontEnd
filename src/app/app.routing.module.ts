@@ -14,7 +14,7 @@ import {CreateEmpruntComponent} from './emprunt/create-emprunt/create-emprunt.co
 import {EmpruntListComponent} from './emprunt/emprunt-list/emprunt-list.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'conducteurs', pathMatch: 'full'},
   {path: 'conducteurs', component: ConducteurListComponent},
   {path: 'ajouterconducteur', component: CreateConducteurComponent},
   {path: 'modifierconducteur/:id', component: UpdateConducteurComponent},

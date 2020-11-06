@@ -1,33 +1,28 @@
-<h3>Créer un emprunt</h3>
 <div style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <div class="container">
-        <div class="dropdown col-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="conducteur" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-            Conducteur
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let conducteur of conducteurs | async" class="dropdown-item" href="#">{{conducteur.prenom}} {{conducteur.nom}}</a>
-          </div>
-        </div>
-
-        <div class="dropdown col-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="vehicule" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-            Véhicule
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a *ngFor="let vehicule of vehicules | async" class="dropdown-item" href="#">{{vehicule.marque}} {{vehicule.modele}}</a>
-          </div>
-        </div>
-
-        <div class="col-3">
-          <button class="btn btn-success" type="submit">Envoyer</button>
-        </div>
-
-      </div>
-    </div>
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-title>
+        Créer un emprunt
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-select placeholder="Conducteur">
+            <mat-option *ngFor="let conducteur of conducteurs | async" [value]="conducteur.idConducteur">
+              {{conducteur.prenom}} {{conducteur.nom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="véhicule" >
+            <mat-option *ngFor="let vehicule of vehicules | async" [value]="vehicule.idVehicule">
+              {{vehicule.marque}} {{vehicule.modele}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" (click)="onSubmit()">Envoyer</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
   </form>
 </div>

@@ -7,6 +7,7 @@ import {EmpruntService} from '../emprunt.service';
 import {Observable} from 'rxjs';
 import {Vehicule} from '../../vehicule/vehicule';
 import {VehiculeService} from '../../vehicule/vehicule.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-create-emprunt',
@@ -14,16 +15,15 @@ import {VehiculeService} from '../../vehicule/vehicule.service';
   styleUrls: ['./create-emprunt.component.css']
 })
 export class CreateEmpruntComponent implements OnInit {
-  emprunts: Emprunt = new Emprunt();
+  emprunt: Emprunt = new Emprunt();
   vehicules: Observable<Vehicule[]>;
   conducteurs: Observable<Conducteur[]>;
-  vehiculeEmprunte;
-  conducteurEmprunteur;
   // angular data binding
 
   submitted = false;
 
-  constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService, private conducteurService: ConducteurService, private router: Router) {
+  constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService
+              , private conducteurService: ConducteurService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -35,23 +35,18 @@ export class CreateEmpruntComponent implements OnInit {
     this.conducteurs = this.conducteurService.getMinConducteursList();
   }
 
-  newEmprunt(): void {
-    this.submitted = false;
-    this.emprunts = new Emprunt();
-  }
-
   save(): void {
     this.empruntService
-      .createEmprunt(this.emprunts).subscribe(data => {
+      .createEmprunt(this.emprunt).subscribe(data => {
         console.log(data);
-        this.emprunts = new Emprunt();
-        this.gotolist();
+        this.emprunt = new Emprunt();
+
       },
       error => console.log(error));
   }
 
   onSubmit(): void {
-    alert("Association créée");
+    alert('Association créée');
     this.submitted = true;
     this.save();
   }
@@ -59,4 +54,5 @@ export class CreateEmpruntComponent implements OnInit {
   gotolist(): void {
     this.router.navigate(['/emprunts']);
   }
+
 }

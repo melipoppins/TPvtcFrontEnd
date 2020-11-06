@@ -20,11 +20,6 @@ export class CreateConducteurComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newConducteur(): void {
-    this.submitted = false;
-    this.conducteur = new Conducteur();
-  }
-
   save(): void {
     this.conducteurService
       .createConducteur(this.conducteur).subscribe(data => {
