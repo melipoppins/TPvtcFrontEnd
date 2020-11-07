@@ -1,6 +1,6 @@
 
 export class Conducteur {
-  idConducteur: number;
+  idConducteur?: number;
   nom: string;
   prenom: string;
 }

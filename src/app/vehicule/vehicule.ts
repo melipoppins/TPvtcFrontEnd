@@ -1,6 +1,6 @@
 
 export class Vehicule {
-  idVehicule: number;
+  idVehicule?: number;
   marque: string;
   modele: string;
   couleur: string;

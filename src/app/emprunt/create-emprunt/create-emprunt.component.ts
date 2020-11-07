@@ -18,8 +18,6 @@ export class CreateEmpruntComponent implements OnInit {
   emprunt: Emprunt = new Emprunt();
   vehicules: Observable<Vehicule[]>;
   conducteurs: Observable<Conducteur[]>;
-  conducteurControl: any;
-  vehiculeControl: any;
 
   constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService,
               private conducteurService: ConducteurService, private router: Router) {
@@ -30,23 +28,22 @@ export class CreateEmpruntComponent implements OnInit {
   }
 
   reloadData(): void {
-    this.vehicules = this.vehiculeService.getMinVehiculesList();
+    this.vehicules = this.vehiculeService.getVehiculesList();
     this.conducteurs = this.conducteurService.getMinConducteursList();
   }
 
   save(): void {
-    this.empruntService
-      .createEmprunt(this.emprunt).subscribe(data => {
-        console.log(data);
-        this.emprunt = new Emprunt();
+    this.empruntService.createEmprunt(this.emprunt)
+      .subscribe(data => {
+          console.log(data);
+          this.emprunt = new Emprunt();
       },
       error => console.log(error));
   }
 
   onSubmit(): void {
-    alert('Association créée');
+    alert('Test');
     this.save();
-    this.reloadData();
   }
 
   gotolist(): void {
