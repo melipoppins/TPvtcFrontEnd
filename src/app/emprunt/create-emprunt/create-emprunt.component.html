@@ -10,7 +10,7 @@
           <mat-select placeholder="Conducteur" [formControl]="conducteurControl">
           -->
           <mat-select placeholder="Conducteur">
-            <mat-option *ngFor="let conducteur of conducteurs | async" [value]="conducteur.idConducteur" name="conduc">
+            <mat-option *ngFor="let conducteur of conducteurs | async" [value]="conducteur" name="conduc">
               {{conducteur.prenom}} {{conducteur.nom}}
             </mat-option>
           </mat-select>
@@ -21,7 +21,7 @@
         </mat-form-field>
         <mat-form-field>
           <mat-select placeholder="véhicule" >
-            <mat-option *ngFor="let vehicule of vehicules | async" [value]="vehicule.idVehicule" name="vehic">
+            <mat-option *ngFor="let vehicule of vehicules | async" [value]="vehicule.valueOf()" name="vehic">
               {{vehicule.marque}} {{vehicule.modele}}
             </mat-option>
           </mat-select>

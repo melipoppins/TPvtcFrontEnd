@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 import {Conducteur} from '../../conducteur/conducteur';
 import {ConducteurService} from '../../conducteur/conducteur.service';
 import {Router} from '@angular/router';
@@ -15,6 +15,7 @@ import {NgForm} from '@angular/forms';
   styleUrls: ['./create-emprunt.component.css']
 })
 export class CreateEmpruntComponent implements OnInit {
+  @Output() majListEmprunts = new EventEmitter();
   emprunt: Emprunt = new Emprunt();
   vehicules: Observable<Vehicule[]>;
   conducteurs: Observable<Conducteur[]>;
@@ -37,6 +38,7 @@ export class CreateEmpruntComponent implements OnInit {
       .subscribe(data => {
           console.log(data);
           this.emprunt = new Emprunt();
+          this.majListEmprunts.emit();
       },
       error => console.log(error));
   }
