@@ -12,7 +12,6 @@ export class UpdateConducteurComponent implements OnInit {
   @Output() majListConducteurs = new EventEmitter();
   id: number;
   conducteur: Conducteur;
-  submitted = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private conducteurService: ConducteurService) {
   }
@@ -42,7 +41,6 @@ export class UpdateConducteurComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitted = true;
     this.updateConducteur();
   }
 

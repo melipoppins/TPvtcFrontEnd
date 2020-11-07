@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Conducteur} from '../conducteur';
 import {ConducteurService} from '../conducteur.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-conducteur-list',
@@ -10,9 +10,11 @@ import {Router} from '@angular/router';
   styleUrls: ['./conducteur-list.component.css']
 })
 export class ConducteurListComponent implements OnInit {
+  conducteur: Conducteur;
+
   conducteurs: Observable<Conducteur[]>;
 
-  constructor(private conducteurService: ConducteurService, private router: Router) {
+  constructor(private conducteurService: ConducteurService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -40,7 +42,8 @@ export class ConducteurListComponent implements OnInit {
   }
 
   updateConducteur(id: number, value: any): void {
-    this.router.navigate(['modifierconducteur', id]);
+
+    // this.router.navigate(['modifierconducteur', id]);
 
   }
 }
