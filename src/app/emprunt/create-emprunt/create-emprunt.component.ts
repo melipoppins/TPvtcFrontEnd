@@ -18,12 +18,11 @@ export class CreateEmpruntComponent implements OnInit {
   emprunt: Emprunt = new Emprunt();
   vehicules: Observable<Vehicule[]>;
   conducteurs: Observable<Conducteur[]>;
-  // angular data binding
+  conducteurControl: any;
+  vehiculeControl: any;
 
-  submitted = false;
-
-  constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService
-              , private conducteurService: ConducteurService, private router: Router) {
+  constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService,
+              private conducteurService: ConducteurService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -40,15 +39,14 @@ export class CreateEmpruntComponent implements OnInit {
       .createEmprunt(this.emprunt).subscribe(data => {
         console.log(data);
         this.emprunt = new Emprunt();
-
       },
       error => console.log(error));
   }
 
   onSubmit(): void {
     alert('Association créée');
-    this.submitted = true;
     this.save();
+    this.reloadData();
   }
 
   gotolist(): void {

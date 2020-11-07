@@ -29,5 +29,22 @@
       </tr>
       </tbody>
     </table>
+    <hr>
+    <div class="row">
+      <div class="col-6 col-s-12">
+        <div class="card">
+          <div class="card-body">
+            <app-create-vehicule (majListVehicules)="reloadData()"></app-create-vehicule>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-s-12">
+        <div class="card">
+          <div class="card-body">
+            <app-update-vehicule (majListVehicules)="reloadData()"></app-update-vehicule>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

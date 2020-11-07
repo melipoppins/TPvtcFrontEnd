@@ -10,7 +10,7 @@ import { CreateVehiculeComponent } from './vehicule/create-vehicule/create-vehic
 import { UpdateVehiculeComponent } from './vehicule/update-vehicule/update-vehicule.component';
 import { VehiculeListComponent } from './vehicule/vehicule-list/vehicule-list.component';
 import { VehiculeDetailsComponent } from './vehicule/vehicule-details/vehicule-details.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app.routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { CreateEmpruntComponent } from './emprunt/create-emprunt/create-emprunt.component';
@@ -42,7 +42,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

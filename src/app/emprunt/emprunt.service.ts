@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 export class EmpruntService {
   private baseUrl = 'http://localhost:8080/tp-vtc/api/v1/emprunts';
 
-  constructor(private  http: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
   getEmprunt(id: number): Observable<any> {
@@ -29,5 +29,9 @@ export class EmpruntService {
 
   getEmpruntsList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
+  }
+
+  getMinEmpruntsList(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/min`);
   }
 }

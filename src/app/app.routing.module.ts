@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'ajoutervehicule', component: CreateVehiculeComponent},
   {path: 'modifiervehicule/:id', component: UpdateVehiculeComponent},
   {path: 'detailsvehicule/:id', component: VehiculeDetailsComponent},
-  {path: 'emprunt', component: EmpruntListComponent},
+  {path: 'emprunts', component: EmpruntListComponent},
   {path: 'ajoutervemprunt', component: CreateEmpruntComponent},
   {path: 'modifieremprunt/:id', component: UpdateEmpruntComponent},
   {path: 'detailsemprunt/:id', component: EmpruntDetailsComponent},

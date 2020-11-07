@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Conducteur} from '../conducteur';
 import {ConducteurService} from '../conducteur.service';
@@ -24,13 +24,15 @@ export class ConducteurListComponent implements OnInit {
   }
 
   deleteConducteur(id: number): void {
-    this.conducteurService.deleteConducteur(id)
-      .subscribe(
-        data => {
-          console.log(data);
-          this.reloadData();
-        },
-        error => console.log(error));
+    if (confirm('Supprimer le conducteur ?')) {
+      this.conducteurService.deleteConducteur(id)
+        .subscribe(
+          data => {
+            console.log(data);
+            this.reloadData();
+          },
+          error => console.log(error));
+    }
   }
 
   conducteurDetails(id: number): void {

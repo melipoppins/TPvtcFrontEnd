@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {Vehicule} from '../vehicule';
 import {VehiculeService} from '../vehicule.service';
@@ -9,8 +9,8 @@ import {VehiculeService} from '../vehicule.service';
   styleUrls: ['./create-vehicule.component.css']
 })
 export class CreateVehiculeComponent implements OnInit {
+  @Output() majListVehicules = new EventEmitter();
   vehicule: Vehicule = new Vehicule();
-  submitted = false;
 
   constructor(private vehiculeService: VehiculeService, private router: Router) {
   }
@@ -18,27 +18,20 @@ export class CreateVehiculeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newVehicule(): void {
-    this.submitted = false;
-    this.vehicule = new Vehicule();
-  }
-
   save(): void {
-    this.vehiculeService
-      .createVehicule(this.vehicule).subscribe(data => {
-        console.log(data);
-        this.vehicule = new Vehicule();
-        this.gotolist();
-      },
-      error => console.log(error));
+    if (confirm('Créer ce véhicule ?')) {
+      this.vehiculeService
+        .createVehicule(this.vehicule).subscribe(data => {
+          console.log(data);
+          this.vehicule = new Vehicule();
+          this.majListVehicules.emit();
+        },
+        error => console.log(error));
+    }
   }
 
-  onSubmit() {
-    this.submitted = true;
+  onSubmit(): void {
     this.save();
   }
 
-  gotolist() {
-    this.router.navigate(['/vehicules']);
-  }
 }

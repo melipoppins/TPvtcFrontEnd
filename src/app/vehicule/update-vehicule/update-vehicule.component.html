@@ -1,5 +1,5 @@
-<h3>Modifier véhicule</h3>
-<div [hidden]="submitted" style="width: 400px;">
+<h3>Modifier ce véhicule</h3>
+<div style="width: 400px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="marque">Marque</label>
@@ -21,6 +21,6 @@
       <input [(ngModel)]="vehicule.immatriculation" class="form-control" id="immat" name="immat" required type="text">
     </div>
 
-    <button class="btn btn-success" type="submit">Envoyer</button>
+    <button class="btn btn-secondary" type="submit">Mettre à jour ce véhicule</button>
   </form>
 </div>

@@ -1,4 +1,3 @@
-import {Emprunt} from '../emprunt/emprunt';
 
 export class Vehicule {
   idVehicule: number;
@@ -6,5 +5,4 @@ export class Vehicule {
   modele: string;
   couleur: string;
   immatriculation: string;
-  emprunts: Emprunt[];
 }

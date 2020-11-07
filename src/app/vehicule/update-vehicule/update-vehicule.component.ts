@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Vehicule} from '../vehicule';
 import {VehiculeService} from '../vehicule.service';
@@ -9,9 +9,9 @@ import {VehiculeService} from '../vehicule.service';
   styleUrls: ['./update-vehicule.component.css']
 })
 export class UpdateVehiculeComponent implements OnInit {
+  @Output() majListVehicules = new EventEmitter();
   id: number;
   vehicule: Vehicule;
-  submitted = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private vehiculeService: VehiculeService) {
   }
@@ -29,16 +29,18 @@ export class UpdateVehiculeComponent implements OnInit {
   }
 
   updateVehicule(): void {
-    this.vehiculeService.updateVehicule(this.id, this.vehicule)
-      .subscribe(data => {
-        console.log(data);
-        this.vehicule = new Vehicule();
-        this.gotoList();
-      }, error => console.log(error));
+    if (confirm('Metttre à jour ce véhicule ?')) {
+      this.vehiculeService.updateVehicule(this.id, this.vehicule)
+        .subscribe(data => {
+          console.log(data);
+          this.vehicule = new Vehicule();
+          this.majListVehicules.emit();
+          this.gotoList();
+        }, error => console.log(error));
+    }
   }
 
   onSubmit(): void {
-    this.submitted = true;
     this.updateVehicule();
   }
 
