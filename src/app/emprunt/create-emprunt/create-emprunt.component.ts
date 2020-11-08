@@ -30,8 +30,10 @@ export class CreateEmpruntComponent implements OnInit {
 
   reloadData(): void {
     this.vehicules = this.vehiculeService.getVehiculesList();
-    this.conducteurs = this.conducteurService.getMinConducteursList();
+    this.conducteurs = this.conducteurService.getConducteursList();
   }
+
+
 
   save(): void {
     this.empruntService.createEmprunt(this.emprunt)

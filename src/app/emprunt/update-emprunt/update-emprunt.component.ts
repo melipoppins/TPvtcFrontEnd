@@ -12,7 +12,6 @@ import {EmpruntService} from '../emprunt.service';
 export class UpdateEmpruntComponent implements OnInit {
   id: number;
   emprunt: Emprunt;
-  submitted = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private empruntService: EmpruntService) {
   }
@@ -39,7 +38,6 @@ export class UpdateEmpruntComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.submitted = true;
     this.updateEmprunt();
   }
 
