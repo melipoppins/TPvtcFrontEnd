@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {Conducteur} from '../../conducteur/conducteur';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Emprunt} from '../emprunt';
 import {EmpruntService} from '../emprunt.service';
+import {Conducteur} from '../../conducteur/conducteur';
+import {Vehicule} from '../../vehicule/vehicule';
+import {Observable} from 'rxjs';
+import {VehiculeService} from '../../vehicule/vehicule.service';
+import {ConducteurService} from '../../conducteur/conducteur.service';
 
 @Component({
   selector: 'app-update-emprunt',
@@ -10,30 +14,37 @@ import {EmpruntService} from '../emprunt.service';
   styleUrls: ['./update-emprunt.component.css']
 })
 export class UpdateEmpruntComponent implements OnInit {
-  id: number;
-  emprunt: Emprunt;
+  @Output() majListEmprunts = new EventEmitter();
+  @Output() disableModif = new EventEmitter();
+  @Input() id: number;
+  @Input()emprunt: Emprunt;
+  conducteur: Conducteur;
+  vehicule: Vehicule;
+  conducteurs: Observable<Conducteur[]>;
+  vehicules: Observable<Vehicule[]>;
 
-  constructor(private route: ActivatedRoute, private router: Router, private empruntService: EmpruntService) {
+  constructor(private route: ActivatedRoute, private router: Router, private empruntService: EmpruntService,
+              private vehiculeService: VehiculeService, private conducteurService: ConducteurService) {
   }
 
   ngOnInit(): void {
-    this.emprunt = new Emprunt();
+    this.reloadData();
+  }
 
-    this.id = this.route.snapshot.params.id;
-
-    this.empruntService.getEmprunt(this.id)
-      .subscribe(data => {
-        console.log(data);
-        this.emprunt = data;
-      }, error => console.log(error));
+  reloadData(): void {
+    this.vehicules = this.vehiculeService.getVehiculesList();
+    this.conducteurs = this.conducteurService.getConducteursList();
   }
 
   updateEmprunt(): void {
+    this.emprunt.conducteur = this.conducteur;
+    this.emprunt.vehicule = this.vehicule;
     this.empruntService.updateEmprunt(this.id, this.emprunt)
       .subscribe(data => {
         console.log(data);
         this.emprunt = new Emprunt();
-        this.gotoList();
+        this.majListEmprunts.emit();
+        this.disableModif.emit();
       }, error => console.log(error));
   }
 
@@ -41,8 +52,5 @@ export class UpdateEmpruntComponent implements OnInit {
     this.updateEmprunt();
   }
 
-  gotoList(): void {
-    this.router.navigate(['/emprunts']);
 
-  }
 }

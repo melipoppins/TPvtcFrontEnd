@@ -1,16 +1,28 @@
-<h3>Modifier emprunt</h3>
 <div style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="conducteur">Conducteur</label>
-      <input [(ngModel)]="emprunt.conducteur" class="form-control" id="conducteur" name="conducteur" required type="text">
-    </div>
-
-    <div class="form-group">
-      <label for="vehicule">Véhicule</label>
-      <input [(ngModel)]="emprunt.vehicule" class="form-control" id="vehicule" name="vehicule" required type="text">
-    </div>
-
-    <button class="btn btn-success" type="submit">Envoyer</button>
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-title>
+        Modifier un emprunt
+      </mat-card-title>
+      <mat-card-content>
+        <mat-form-field>
+          <mat-select placeholder="{{emprunt.conducteur.prenom}} {{emprunt.conducteur.nom}}" [(value)]="conducteur">
+            <mat-option *ngFor="let conducteur of conducteurs | async" [value]="conducteur.valueOf()">
+              {{conducteur.prenom}} {{conducteur.nom}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="{{emprunt.vehicule.marque}} {{emprunt.vehicule.modele}}" [(value)]="vehicule">
+            <mat-option *ngFor="let vehicule of vehicules | async" [value]="vehicule.valueOf()">
+              {{vehicule.marque}} {{vehicule.modele}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">Envoyer</button>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
   </form>
 </div>

@@ -11,7 +11,12 @@
         <th>Modèle</th>
         <th>Couleur</th>
         <th>Immatriculation</th>
-        <th>Actions</th>
+        <th></th>
+        <th>
+          <button mat-icon-button (click)="disableModif()">
+            <mat-icon color="primary">person_add</mat-icon>
+          </button>
+        </th>
       </tr>
       </thead>
       <tbody>
@@ -22,29 +27,34 @@
         <td>{{vehicule.couleur}}</td>
         <td>{{vehicule.immatriculation}}</td>
         <td>
-          <button (click)="vehiculeDetails(vehicule.idVehicule)" class="btn btn-info">Détails</button>
-          <button (click)="updateVehicule(vehicule.idVehicule, vehicule)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>
-          <button (click)="deleteVehicule(vehicule.idVehicule)" class="btn btn-danger" style="margin-left: 10px">Supprimer</button>
+          <button mat-icon-button (click)="vehiculeDetails(vehicule.idVehicule)">
+            <mat-icon color="primary">search</mat-icon>
+          </button>
+          <button mat-icon-button (click)="updateVehicule(vehicule.idVehicule, vehicule)" style="margin-left: 10px">
+            <mat-icon color="accent">edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteVehicule(vehicule.idVehicule)" style="margin-left: 10px">
+            <mat-icon color="warn">delete_sweep</mat-icon>
+          </button>
         </td>
+        <td></td>
       </tr>
       </tbody>
     </table>
     <hr>
     <div class="row">
-      <div class="col-6 col-s-12">
-        <div class="card">
-          <div class="card-body">
-            <app-create-vehicule (majListVehicules)="reloadData()"></app-create-vehicule>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-s-12">
-        <div class="card">
-          <div class="card-body">
-            <!-- <app-update-vehicule (majListVehicules)="reloadData()"></app-update-vehicule> -->
-          </div>
-        </div>
-      </div>
+      <div class="col-3"></div>
+      <app-create-vehicule (majListVehicules)="reloadData()"
+                           *ngIf="isDisabledModif">
+      </app-create-vehicule>
+
+      <app-update-vehicule (majListVehicules)="reloadData()"
+                           (disableModif)="disableModif()"
+                           [vehicule]="vehiculeToUpdate"
+                           [id]="vehiculeId"
+                           *ngIf="!isDisabledModif">
+      </app-update-vehicule>
+      <div class="col-3"></div>
     </div>
   </div>
 </div>

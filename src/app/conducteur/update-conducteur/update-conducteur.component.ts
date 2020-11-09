@@ -10,22 +10,14 @@ import {ConducteurService} from '../conducteur.service';
 })
 export class UpdateConducteurComponent implements OnInit {
   @Output() majListConducteurs = new EventEmitter();
-  id: number;
-  conducteur: Conducteur;
+  @Output() disableModif = new EventEmitter();
+  @Input() id: number;
+  @Input() conducteur: Conducteur;
 
   constructor(private route: ActivatedRoute, private router: Router, private conducteurService: ConducteurService) {
   }
 
   ngOnInit(): void {
-    this.conducteur = new Conducteur();
-
-    this.id = this.route.snapshot.params.id;
-
-    this.conducteurService.getConducteur(this.id)
-      .subscribe(data => {
-        console.log(data);
-        this.conducteur = data;
-      }, error => console.log(error));
   }
 
   updateConducteur(): void {
@@ -35,7 +27,6 @@ export class UpdateConducteurComponent implements OnInit {
           console.log(data);
           this.conducteur = new Conducteur();
           this.majListConducteurs.emit();
-          this.gotoList();
         }, error => console.log(error));
     }
   }
@@ -47,5 +38,9 @@ export class UpdateConducteurComponent implements OnInit {
   gotoList(): void {
     this.router.navigate(['/conducteurs']);
 
+  }
+
+  cancel(): void {
+    this.disableModif.emit();
   }
 }

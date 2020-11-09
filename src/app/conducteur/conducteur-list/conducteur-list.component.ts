@@ -1,8 +1,8 @@
-import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Conducteur} from '../conducteur';
 import {ConducteurService} from '../conducteur.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-conducteur-list',
@@ -11,10 +11,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ConducteurListComponent implements OnInit {
   conducteur: Conducteur;
-
+  conducteurToUpdate: Conducteur;
+  conducteurId: number;
+  isDisabledModif: boolean;
   conducteurs: Observable<Conducteur[]>;
 
-  constructor(private conducteurService: ConducteurService, private router: Router, private route: ActivatedRoute) {
+  constructor(private conducteurService: ConducteurService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -23,6 +25,11 @@ export class ConducteurListComponent implements OnInit {
 
   reloadData(): void {
     this.conducteurs = this.conducteurService.getConducteursList();
+    this.disableModif();
+  }
+
+  disableModif(): void {
+    this.isDisabledModif = true;
   }
 
   deleteConducteur(id: number): void {
@@ -41,9 +48,9 @@ export class ConducteurListComponent implements OnInit {
     this.router.navigate(['detailsconducteur', id]);
   }
 
-  updateConducteur(id: number, value: any): void {
-
-    this.router.navigate(['modifierconducteur', id]);
-
+  updateConducteur(id: number, conducteur: Conducteur): void {
+    this.isDisabledModif = false;
+    this.conducteurToUpdate = conducteur;
+    this.conducteurId = id;
   }
 }

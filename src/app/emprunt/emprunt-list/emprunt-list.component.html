@@ -9,7 +9,7 @@
         <th>Id</th>
         <th>Conducteur</th>
         <th>Véhicule</th>
-        <th>Actions</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -18,16 +18,35 @@
         <td>{{emprunt.conducteur.nom}} {{emprunt.conducteur.prenom}}</td>
         <td>{{emprunt.vehicule.marque}} {{emprunt.vehicule.modele}}</td>
         <td>
-          <button (click)="empruntDetails(emprunt.idEmprunt)" class="btn btn-info">Détails</button>
-          <button (click)="updateEmprunt(emprunt.idEmprunt, emprunt)" class="btn btn-warning" style="margin-left: 10px">Modifier</button>
-          <button (click)="deleteEmprunt(emprunt.idEmprunt)" class="btn btn-danger" style="margin-left: 10px">Supprimer</button>
+          <button mat-icon-button (click)="empruntDetails(emprunt.idEmprunt)">
+            <mat-icon color="primary">search</mat-icon>
+          </button>
+          <button mat-icon-button (click)="updateEmprunt(emprunt.idEmprunt, emprunt)" style="margin-left: 10px">
+            <mat-icon color="accent">edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteEmprunt(emprunt.idEmprunt)" style="margin-left: 10px">
+            <mat-icon color="warn">delete_sweep</mat-icon>
+          </button>
         </td>
       </tr>
       </tbody>
     </table>
 
     <hr>
-    <app-create-emprunt (majListEmprunts)="reloadData()"></app-create-emprunt>
+    <div class="row">
+      <div class="col-3"></div>
+      <app-create-emprunt (majListEmprunts)="reloadData()"
+                             *ngIf="isDisabledModif">
+      </app-create-emprunt>
 
+      <app-update-emprunt (majListEmprunts)="reloadData()"
+                             (disableModif)="disableModif()"
+                             [emprunt]="empruntToUpdate"
+                             [id]="empruntId"
+                             *ngIf="!isDisabledModif">
+      </app-update-emprunt>
+      <div class="col-3"></div>
+
+  </div>
   </div>
 </div>

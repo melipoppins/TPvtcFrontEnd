@@ -6,10 +6,14 @@
     <table class="table table-striped">
       <thead>
       <tr>
-        <th>Id</th>
-        <th>Prénom</th>
-        <th>Nom</th>
-        <th>Actions</th>
+        <th class="th-lg">Id</th>
+        <th class="th-lg">Prénom</th>
+        <th class="th-lg">Nom</th>
+        <th class="th-lg"></th>
+        <th class="th-lg">
+          <button mat-icon-button (click)="disableModif()">
+            <mat-icon color="primary">person_add</mat-icon>
+          </button></th>
       </tr>
       </thead>
       <tbody>
@@ -18,32 +22,34 @@
         <td>{{conducteur.prenom}}</td>
         <td>{{conducteur.nom}}</td>
         <td>
-          <button (click)="conducteurDetails(conducteur.idConducteur)" class="btn btn-info">Détails</button>
-          <button (click)="updateConducteur(conducteur.idConducteur, conducteur)" class="btn btn-warning"
-                  style="margin-left: 10px">Modifier</button>
-          <button (click)="deleteConducteur(conducteur.idConducteur)" class="btn btn-danger" style="margin-left: 10px">
-            Supprimer</button>
+          <button mat-icon-button (click)="conducteurDetails(conducteur.idConducteur)">
+            <mat-icon color="primary">search</mat-icon>
+          </button>
+          <button mat-icon-button (click)="updateConducteur(conducteur.idConducteur, conducteur)" style="margin-left: 10px">
+            <mat-icon color="accent">edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteConducteur(conducteur.idConducteur)" style="margin-left: 10px">
+            <mat-icon color="warn">delete_sweep</mat-icon>
+          </button>
         </td>
+        <td></td>
       </tr>
       </tbody>
     </table>
     <hr>
     <div class="row">
-      <div class="col-6 col-s-12">
-        <div class="card">
-          <div class="card-body">
-            <app-create-conducteur (majListConducteurs)="reloadData()"></app-create-conducteur>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-s-12">
-        <div class="card">
-          <div class="card-body">
-           <app-update-conducteur (majListConducteurs)="reloadData()"></app-update-conducteur>
-          </div>
-        </div>
-      </div>
-    </div>
+      <div class="col-3"></div>
+      <app-create-conducteur (majListConducteurs)="reloadData()"
+                             *ngIf="isDisabledModif">
+      </app-create-conducteur>
 
+      <app-update-conducteur (majListConducteurs)="reloadData()"
+                             (disableModif)="disableModif()"
+                             [conducteur]="conducteurToUpdate"
+                             [id]="conducteurId"
+                             *ngIf="!isDisabledModif">
+      </app-update-conducteur>
+      <div class="col-3"></div>
+    </div>
   </div>
 </div>

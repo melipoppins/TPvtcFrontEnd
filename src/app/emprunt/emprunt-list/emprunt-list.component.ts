@@ -10,17 +10,26 @@ import {EmpruntService} from '../emprunt.service';
   styleUrls: ['./emprunt-list.component.css']
 })
 export class EmpruntListComponent implements OnInit {
+  emprunt: Emprunt;
   emprunts: Observable<Emprunt[]>;
+  isDisabledModif: boolean;
+  empruntToUpdate: Emprunt;
+  empruntId: number;
 
   constructor(private empruntService: EmpruntService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.reloadData();
+    this.disableModif();
   }
 
   reloadData(): void {
     this.emprunts = this.empruntService.getEmpruntsList();
+  }
+
+  disableModif(): void {
+    this.isDisabledModif = true;
   }
 
   deleteEmprunt(id: number): void {
@@ -37,8 +46,11 @@ export class EmpruntListComponent implements OnInit {
     this.router.navigate(['detailsemprunt', id]);
   }
 
-  updateEmprunt(id: number, value: any): void {
-    this.router.navigate(['modifieremprunt', id]);
+  updateEmprunt(id: number, emprunt: Emprunt): void {
+    this.isDisabledModif = false;
+    this.empruntToUpdate = emprunt;
+    this.empruntId = id;
 
   }
+
 }

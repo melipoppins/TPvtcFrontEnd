@@ -1,15 +1,21 @@
-<h3>Créer un conducteur</h3>
-<div style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="prenom">Prénom</label>
-      <input [(ngModel)]="conducteur.prenom" class="form-control" id="prenom" name="prenom" required type="text">
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h3>Créer un conducteur</h3>
+      <div style="width: 400px;">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input [(ngModel)]="conducteur.prenom" class="form-control" id="prenom" name="prenom" required type="text">
 
-      <label for="nom">Nom</label>
-      <input [(ngModel)]="conducteur.nom" class="form-control" id="nom" name="nom" required type="text">
+            <label for="nom">Nom</label>
+            <input [(ngModel)]="conducteur.nom" class="form-control" id="nom" name="nom" required type="text">
+          </div>
+
+          <button class="btn btn-secondary" type="submit">Ajouter ce conducteur</button>
+        </form>
+      </div>
     </div>
-
-    <button class="btn btn-secondary" type="submit" >Ajouter ce conducteur</button>
-  </form>
+  </div>
 </div>
 

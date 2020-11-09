@@ -3,10 +3,10 @@
 <hr/>
 <div *ngIf="emprunt">
   <div>
-    <label><b>Conducteur : </b></label> {{emprunt.conducteurs}}
+    <label><b>Conducteur : </b></label> {{emprunt.conducteur.nom}} {{emprunt.conducteur.prenom}}
   </div>
   <div>
-    <label><b>Véhicule : </b></label> {{emprunt.vehicules}}
+    <label><b>Véhicule : </b></label> {{emprunt.vehicule.marque}} {{emprunt.vehicule.modele}}
   </div>
 </div>
 

@@ -1,16 +1,23 @@
-<h3>Modifier ce conducteur</h3>
-<div style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="prenom">Prénom</label>
-      <input [(ngModel)]="conducteur.prenom" class="form-control" id="prenom" name="prenom" required type="text" >
-    </div>
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h3>Modifier ce conducteur</h3>
+      <div style="width: 400px;">
+        <form (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input [(ngModel)]="conducteur.prenom" class="form-control" id="prenom" name="prenom" required type="text">
+          </div>
 
-    <div class="form-group">
-      <label for="nom">Nom</label>
-      <input [(ngModel)]="conducteur.nom" class="form-control" id="nom" name="nom" required type="text" >
-    </div>
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input [(ngModel)]="conducteur.nom" class="form-control" id="nom" name="nom" required type="text">
+          </div>
 
-    <button class="btn btn-secondary" type="submit" >Mettre à jour ce conducteur</button>
-  </form>
+          <button class="btn btn-secondary" type="submit">Mettre à jour ce conducteur</button>
+          <button class="btn btn-secondary" style="margin-left: 10px" (click)="cancel()">Annuler</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

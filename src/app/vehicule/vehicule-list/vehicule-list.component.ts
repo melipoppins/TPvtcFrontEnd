@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
 import {VehiculeService} from '../vehicule.service';
@@ -10,6 +10,10 @@ import {Vehicule} from '../vehicule';
   styleUrls: ['./vehicule-list.component.css']
 })
 export class VehiculeListComponent implements OnInit {
+  vehicule: Vehicule;
+  vehiculeToUpdate: Vehicule;
+  vehiculeId: number;
+  isDisabledModif: boolean;
   vehicules: Observable<Vehicule[]>;
 
   constructor(private vehiculeService: VehiculeService, private router: Router) {
@@ -21,10 +25,14 @@ export class VehiculeListComponent implements OnInit {
 
   reloadData(): void {
     this.vehicules = this.vehiculeService.getVehiculesList();
+    this.disableModif();
   }
 
+  disableModif(): void {
+    this.isDisabledModif = true;
+  }
   deleteVehicule(id: number): void {
-    if(confirm('Supprimer le véhicule ?')) {
+    if (confirm('Supprimer le véhicule ?')) {
       this.vehiculeService.deleteVehicule(id)
         .subscribe(
           data => {
@@ -39,9 +47,12 @@ export class VehiculeListComponent implements OnInit {
     this.router.navigate(['detailsvehicule', id]);
   }
 
-  updateVehicule(id: number, value: any): void {
-    this.router.navigate(['modifiervehicule', id]);
+  updateVehicule(id: number, vehicule: Vehicule): void {
+    this.isDisabledModif = false;
+    this.vehiculeToUpdate = vehicule;
+    this.vehiculeId = id;
 
   }
+
 
 }

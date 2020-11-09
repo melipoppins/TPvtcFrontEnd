@@ -1,8 +1,7 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {Conducteur} from '../conducteur';
 import {ConducteurService} from '../conducteur.service';
 import {Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-create-conducteur',

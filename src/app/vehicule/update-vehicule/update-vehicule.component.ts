@@ -1,7 +1,8 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Vehicule} from '../vehicule';
 import {VehiculeService} from '../vehicule.service';
+import {Conducteur} from '../../conducteur/conducteur';
 
 @Component({
   selector: 'app-update-vehicule',
@@ -10,32 +11,23 @@ import {VehiculeService} from '../vehicule.service';
 })
 export class UpdateVehiculeComponent implements OnInit {
   @Output() majListVehicules = new EventEmitter();
-  id: number;
-  vehicule: Vehicule;
+  @Output() disableModif = new EventEmitter();
+  @Input() id: number;
+  @Input() vehicule: Vehicule;
 
   constructor(private route: ActivatedRoute, private router: Router, private vehiculeService: VehiculeService) {
   }
 
   ngOnInit(): void {
-    this.vehicule = new Vehicule();
-
-    this.id = this.route.snapshot.params.id;
-
-    this.vehiculeService.getVehicule(this.id)
-      .subscribe(data => {
-        console.log(data);
-        this.vehicule = data;
-      }, error => console.log(error));
   }
 
   updateVehicule(): void {
-    if (confirm('Metttre à jour ce véhicule ?')) {
+    if (confirm('Mettre à jour ce véhicule ?')) {
       this.vehiculeService.updateVehicule(this.id, this.vehicule)
         .subscribe(data => {
           console.log(data);
           this.vehicule = new Vehicule();
           this.majListVehicules.emit();
-          this.gotoList();
         }, error => console.log(error));
     }
   }
@@ -44,8 +36,7 @@ export class UpdateVehiculeComponent implements OnInit {
     this.updateVehicule();
   }
 
-  gotoList(): void {
-    this.router.navigate(['/vehicules']);
-
+  cancel(): void {
+    this.disableModif.emit();
   }
 }
