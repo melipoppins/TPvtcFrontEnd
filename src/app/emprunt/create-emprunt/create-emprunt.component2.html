@@ -1,0 +1,20 @@
+<h3>Créer location</h3>
+<div style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label for="vehiculeList">select Car</label>
+      <select class="form-control" id="vehiculeList" name="vehiculeList">
+        <option *ngFor="let vehicule of vehicules | async" name="carModel" [ngValue]="vehicule" ngDefaultControl>{{vehicule.marque}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="conducteurList">select Driver</label>
+      <select class="form-control" id="conducteurList" name="conducteurList" [(value)]="conducteur">
+        <option *ngFor="let conducteur of conducteurs | async" id="conducteur" name="conducteur" ngDefaultControl>{{conducteur.prenom}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

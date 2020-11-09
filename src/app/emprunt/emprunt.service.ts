@@ -31,7 +31,5 @@ export class EmpruntService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  getMinEmpruntsList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/min`);
-  }
+
 }
