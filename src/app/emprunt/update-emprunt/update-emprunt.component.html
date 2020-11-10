@@ -6,14 +6,14 @@
       </mat-card-title>
       <mat-card-content>
         <mat-form-field>
-          <mat-select placeholder="{{emprunt.conducteur.prenom}} {{emprunt.conducteur.nom}}" [(value)]="conducteur">
+          <mat-select placeholder="{{emprunt.conducteur.prenom}} {{emprunt.conducteur.nom}}" [(value)]="emprunt.conducteur">
             <mat-option *ngFor="let conducteur of conducteurs | async" [value]="conducteur.valueOf()">
               {{conducteur.prenom}} {{conducteur.nom}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="{{emprunt.vehicule.marque}} {{emprunt.vehicule.modele}}" [(value)]="vehicule">
+          <mat-select placeholder="{{emprunt.vehicule.marque}} {{emprunt.vehicule.modele}}" [(value)]="emprunt.vehicule">
             <mat-option *ngFor="let vehicule of vehicules | async" [value]="vehicule.valueOf()">
               {{vehicule.marque}} {{vehicule.modele}}
             </mat-option>
@@ -21,6 +21,7 @@
         </mat-form-field>
         <mat-card-actions>
           <button mat-raised-button color="primary" type="submit">Envoyer</button>
+          <button mat-raised-button color="primary" style="margin-left: 10px" (click)="cancel()">Annuler</button>
         </mat-card-actions>
       </mat-card-content>
     </mat-card>

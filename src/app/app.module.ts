@@ -19,6 +19,7 @@ import { EmpruntListComponent } from './emprunt/emprunt-list/emprunt-list.compon
 import { EmpruntDetailsComponent } from './emprunt/emprunt-details/emprunt-details.component';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableComponent } from './emprunt/table/table.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UpdateEmpruntComponent,
     EmpruntListComponent,
     EmpruntDetailsComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,

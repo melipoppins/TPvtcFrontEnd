@@ -17,9 +17,7 @@ export class UpdateEmpruntComponent implements OnInit {
   @Output() majListEmprunts = new EventEmitter();
   @Output() disableModif = new EventEmitter();
   @Input() id: number;
-  @Input()emprunt: Emprunt;
-  conducteur: Conducteur;
-  vehicule: Vehicule;
+  @Input() emprunt: Emprunt;
   conducteurs: Observable<Conducteur[]>;
   vehicules: Observable<Vehicule[]>;
 
@@ -37,8 +35,6 @@ export class UpdateEmpruntComponent implements OnInit {
   }
 
   updateEmprunt(): void {
-    this.emprunt.conducteur = this.conducteur;
-    this.emprunt.vehicule = this.vehicule;
     this.empruntService.updateEmprunt(this.id, this.emprunt)
       .subscribe(data => {
         console.log(data);
@@ -53,4 +49,7 @@ export class UpdateEmpruntComponent implements OnInit {
   }
 
 
+  cancel(): void {
+    this.disableModif.emit();
+  }
 }

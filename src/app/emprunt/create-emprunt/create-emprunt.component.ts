@@ -19,8 +19,6 @@ export class CreateEmpruntComponent implements OnInit {
   emprunt: Emprunt = new Emprunt();
   vehicules: Observable<Vehicule[]>;
   conducteurs: Observable<Conducteur[]>;
-  conducteur: Conducteur;
-  vehicule: Vehicule;
 
   constructor(private empruntService: EmpruntService, private vehiculeService: VehiculeService,
               private conducteurService: ConducteurService, private router: Router) {
@@ -36,8 +34,6 @@ export class CreateEmpruntComponent implements OnInit {
   }
 
   save(): void {
-    this.emprunt.conducteur = this.conducteur; // donner valeur conducteur au conducteur de l'emprunt
-    this.emprunt.vehicule = this.vehicule; // idem conducteur pour vehicule
     this.empruntService.createEmprunt(this.emprunt)
       .subscribe(data => {
           console.log(data);

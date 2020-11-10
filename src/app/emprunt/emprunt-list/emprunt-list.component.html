@@ -36,17 +36,17 @@
     <div class="row">
       <div class="col-3"></div>
       <app-create-emprunt (majListEmprunts)="reloadData()"
-                             *ngIf="isDisabledModif">
+                          *ngIf="isDisabledModif">
       </app-create-emprunt>
 
       <app-update-emprunt (majListEmprunts)="reloadData()"
-                             (disableModif)="disableModif()"
-                             [emprunt]="empruntToUpdate"
-                             [id]="empruntId"
-                             *ngIf="!isDisabledModif">
+                          (disableModif)="disableModif()"
+                          [emprunt]="empruntToUpdate"
+                          [id]="empruntId"
+                          *ngIf="!isDisabledModif">
       </app-update-emprunt>
-      <div class="col-3"></div>
 
-  </div>
+    </div>
   </div>
 </div>
+

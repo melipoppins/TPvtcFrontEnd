@@ -6,14 +6,17 @@
       </mat-card-title>
       <mat-card-content>
         <mat-form-field>
-          <mat-select placeholder="Conducteur" [(value)]="conducteur">
+          <mat-select placeholder="Conducteur" [(value)]="emprunt.conducteur">
+            <!-- on met à jour emprunt.conducteur avec la valeur sélectionnée -->
             <mat-option *ngFor="let conducteur of conducteurs | async" [value]="conducteur.valueOf()">
+              <!-- on parcourt la liste des conducteurs (*ngFor="let conducteur of conducteurs) pour afficher la liste.
+              La valeur sélectionnée est le conducteur de la liste affiché ([value]="conducteur.valueOf()")-->
               {{conducteur.prenom}} {{conducteur.nom}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="véhicule" [(value)]="vehicule">
+          <mat-select placeholder="véhicule" [(value)]="emprunt.vehicule">
             <mat-option *ngFor="let vehicule of vehicules | async" [value]="vehicule.valueOf()">
               {{vehicule.marque}} {{vehicule.modele}}
             </mat-option>
